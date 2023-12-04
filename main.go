@@ -14,39 +14,6 @@ type move struct {
 	potencia, precision int
 }
 
-// func main() {
-
-// 	r, err := pokeapi.Resource("move")
-
-// 	if err != nil {
-// 		log.Printf("error obteniendo: %V", err)
-// 		return
-// 	}
-
-// 	var nombres []string
-
-// 	for _, mov := range r.Results {
-
-// 		nombres = append(nombres, mov.Name)
-
-// 	}
-
-// 	for i, nombre := range nombres {
-
-// 		log.Println(nombre)
-
-// 		if i == 30 {
-// 			break
-// 		}
-
-// 		if strings.Contains(nombre, "_") {
-// 			fmt.Printf("El nombre '%s' contiene un guión bajo.\n", nombre)
-// 			break
-// 		}
-// 	}
-
-// }
-
 func main() {
 
 	//Aca va el nombre de tu excel con la lista de movimientos en columna, en ingles y si tiene mas de una palabra entonces
