@@ -10,8 +10,8 @@ import (
 )
 
 type move struct {
-	nombre, tipo, clase string
-	potencia, precision int
+	nombre, tipo, clase, efecto, efecto_triggerChance string
+	potencia, precision                               int
 }
 
 func main() {
@@ -58,6 +58,13 @@ func main() {
 			move.potencia = data.Power
 			move.precision = data.Accuracy
 			move.tipo = data.Type.Name
+			move.efecto = data.EffectEntries[0].Effect
+
+			if data.EffectChance == nil {
+				move.efecto_triggerChance = "-"
+			} else {
+				move.efecto_triggerChance = fmt.Sprint(data.EffectChance)
+			}
 
 			moves = append(moves, move)
 
@@ -80,7 +87,7 @@ func main() {
 
 		var valor string
 
-		for j := 0; j < 5; j++ {
+		for j := 0; j < 7; j++ {
 			letter, _ := getLetter(j)
 			coord := strings.ToUpper(letter) + fmt.Sprint(i+1)
 
@@ -95,6 +102,10 @@ func main() {
 				valor = fmt.Sprint(move.potencia)
 			case 4:
 				valor = fmt.Sprint(move.precision)
+			case 5:
+				valor = move.efecto
+			case 6:
+				valor = move.efecto_triggerChance
 			}
 
 			err := movesFile.SetCellValue("Sheet1", coord, valor)
